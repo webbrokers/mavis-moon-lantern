@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#21132f"><title>Мэвис · Тайна лунного фонаря</title><link rel="stylesheet" href="style.css?v=16"><link rel="preload" as="image" href="assets/mavis-walk-grok.png"><link rel="preload" as="image" href="assets/mavis-pickup-grok.png"></head>
+<body>
+<svg class="symbols" aria-hidden="true"><defs>
+<symbol id="ribbon-art" viewBox="0 0 100 80"><path d="M44 38 20 76 42 68 50 79 59 43M53 38 77 77 82 61 96 65 65 31" fill="#a75cda" stroke="#512270" stroke-width="4"/><path d="M46 24C11-5 4 10 9 39c2 15 22 6 37-3M55 24C89-2 99 8 90 36c-5 15-22 8-35 0" fill="#d38bfa" stroke="#512270" stroke-width="4"/><rect x="42" y="21" width="18" height="23" rx="7" fill="#9250c1"/></symbol>
+<symbol id="ghost-art" viewBox="0 0 120 150"><path d="M23 130C9 90 18 26 58 22c48-6 53 62 48 108l-17-9-15 16-17-13-16 14z" fill="#ccecf5" stroke="#5d4c83" stroke-width="4"/><path d="M29 60 5 84 28 91M100 61l18 22-15 9" fill="#ccecf5" stroke="#5d4c83" stroke-width="4"/><ellipse cx="46" cy="64" rx="6" ry="10" fill="#42335c"/><ellipse cx="78" cy="64" rx="6" ry="10" fill="#42335c"/><path d="M48 86q14 17 28-1" fill="none" stroke="#654179" stroke-width="4" stroke-linecap="round"/><path d="M30 31 36 9h47l9 22z" fill="#593376"/><path d="M24 31h74" stroke="#b589df" stroke-width="7" stroke-linecap="round"/><path d="m43 108 17 8 17-8v18l-17-7-17 7z" fill="#a54eaf"/></symbol>
+<symbol id="lantern-art" viewBox="0 0 130 140"><path d="M63 29q-9-20 9-25" stroke="#4d3265" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M64 27c-58-17-79 89-12 98 72 20 104-90 30-98" fill="#714295" stroke="#362049" stroke-width="5"/><path d="M53 30q-33 51-3 91M78 29q32 50-3 96" fill="none" stroke="#955cc0" stroke-width="5"/><path d="m25 58 24-10-8 23zM102 58 82 48 6 23z" fill="#281c38"/><path d="m47 89 13 5 15-5 14 3-12 15H49L36 92z" fill="#281c38"/><path d="m65 48 13 20-13 20-13-20z" fill="#1e1631" stroke="#c09ee3" stroke-width="3"/></symbol>
+<symbol id="bell-art" viewBox="0 0 100 90"><path d="M21 65q0-44 29-44t29 44" fill="#ab89c4" stroke="#49345e" stroke-width="5"/><path d="M14 69h72M44 14h12M50 14v8" stroke="#e1c5f2" stroke-width="7" stroke-linecap="round"/></symbol>
+</defs></svg>
+<div class="app">
+
+<main>
+<div class="game-frame">
+<section id="scene" class="scene" aria-label="Холл отеля">
+<img class="background" src="assets/lobby-v4.png" alt="Холл замка: привидение за стойкой, лунный алтарь, портреты монстров и тыквы" draggable="false">
+<div class="scene-hud"><div class="scene-title" aria-label="Тайна лунного фонаря — первое дело Мэвис"><span class="ui-icon icon-hint logo-bat" aria-hidden="true"></span><span class="logo-copy"><b>Тайна лунного фонаря</b><small>ПЕРВОЕ ДЕЛО МЭВИС</small></span></div><div class="scene-tools"><button id="hint" class="hint-button" aria-label="Подсказка" title="Подсказка"><span class="ui-icon icon-hint" aria-hidden="true"></span></button></div></div>
+<div class="room-label"><span>01</span> Холл отеля</div>
+<button class="hotspot kitchen" data-object="kitchen" aria-label="Дверь кухни"></button>
+<button class="hotspot library" data-object="library" aria-label="Дверь библиотеки"></button>
+<button class="hotspot ghost" data-object="ghost" aria-label="Администратор-привидение"></button>
+<button class="hotspot lantern" data-object="lantern" aria-label="Алтарь лунного кристалла"><span class="object-spark">✧</span></button>
+<button class="hotspot bell" data-object="bell" aria-label="Звонок на стойке"><svg><use href="#bell-art"/></svg></button>
+<button class="hotspot ribbon" data-object="ribbon" aria-label="Фиолетовая лента на полу"><svg><use href="#ribbon-art"/></svg><span class="object-spark">✧</span></button>
+<button class="hotspot pumpkin" data-object="pumpkin" aria-label="Тыква на лестнице"></button>
+<div class="ghost-motion" aria-hidden="true"><div class="ghost-pose"><span class="ghost-blink eye-one"></span><span class="ghost-blink eye-two"></span></div></div>
+<div id="actor" class="actor" aria-hidden="true"><div class="actor-body"><img src="assets/mavis.png" alt="" draggable="false"><div class="walk-sprite"></div><div class="pickup-sprite"></div></div><span class="exclaim">!</span></div>
+<div id="scene-fade" hidden aria-hidden="true"></div>
+<div id="destination" class="destination" hidden></div>
+<div id="actions" class="object-actions" hidden></div>
+
+</section>
+<aside class="inventory" aria-label="Рюкзак"><div class="bag-tools"><button id="fullscreen" class="icon-button" aria-label="Развернуть на весь экран" title="На весь экран">⛶</button><button id="settings" class="icon-button" aria-label="Настройки" title="Настройки"><span class="ui-icon icon-gear" aria-hidden="true"></span></button></div><div class="bag-heading"><span class="ui-icon icon-bag" aria-hidden="true"></span><b>РЮКЗАК</b></div><div id="slots" class="slots"></div><div id="inventory-actions" class="inventory-actions" role="group" aria-label="Действия с предметом" hidden><button id="inspect-item">◎ Посмотреть</button><button id="apply-item">✋ Применить</button></div><span id="bag-tip">Здесь будут<br>твои находки</span></aside>
+<footer class="dialogue"><div class="speaker-mark">М</div><div class="dialogue-copy"><div class="dialogue-top"><strong id="speaker">Мэвис</strong><span id="objective">Найти лунный кристалл</span></div><p id="line" aria-live="polite">Скоро праздник! Почему лунный алтарь погас?</p></div><div id="story-controls" hidden><span id="story-progress"></span><button id="story-next" class="primary">Дальше →</button><button id="story-skip" class="story-skip">Пропустить вступление</button></div><button id="repeat" class="icon-button" aria-label="Послушать реплику ещё раз" title="Послушать ещё раз">♪</button></footer>
+</div>
+</main>
+
+</div>
+<div id="intro" class="overlay title-screen"><img class="title-landscape" src="assets/title-hotel.png" alt="Отель в лунном свете"><section class="card intro-card"><span class="eyebrow">ХЭЛЛОУИН В ОТЕЛЕ · ПЕРВОЕ ДЕЛО</span><div class="intro-bat"><span class="ui-icon icon-hint" aria-hidden="true"></span></div><h1>Тайна лунного фонаря</h1><p>До праздника осталось совсем немного.<br>Из алтаря исчез лунный кристалл.<br>Поможешь Мэвис найти его?</p><div class="loading-panel"><label for="load-progress" id="load-status">Загружаем отель…</label><progress id="load-progress" max="100" value="0"></progress><span id="load-detail" role="status">Готовим комнаты и анимации</span><button id="load-retry" class="secondary" hidden>Повторить загрузку</button></div><button id="start" class="primary" disabled>Начать расследование <span>→</span></button></section></div>
+<dialog id="settings-dialog" class="card"><button class="close" data-close="settings-dialog" aria-label="Закрыть настройки">×</button><h2>Как тебе удобно</h2><button id="sound" class="secondary sound-setting" aria-label="Выключить весь звук" aria-pressed="true">♫ Музыка и звуки включены</button><label><input type="checkbox" id="music-setting"> Фоновая музыка</label><label class="volume-label">Громкость музыки <input type="range" id="music-volume" min="0" max="1" step="0.05" aria-label="Громкость музыки"></label><label><input type="checkbox" id="effects-setting"> Шаги и звуки предметов</label><label><input type="checkbox" id="voice-setting"> Озвучка диалогов</label><p class="fine">У каждого героя свой записанный голос. Русские субтитры остаются включёнными даже без звука.</p><label><input type="checkbox" id="motion-setting"> Меньше фоновой анимации</label><p class="fine">Ходьба — цикл Grok из 28 кадров. Подбор — 12 кадров в секунду. Радость пока использует пробное движение.</p><button id="replay-story" class="secondary">Послушать историю сначала</button><button id="reset" class="secondary">Начать заново</button></dialog>
+<dialog id="reset-dialog" class="card"><h2>Начать сначала?</h2><p>Находки и прогресс расследования во всех комнатах сбросятся.</p><div class="row"><button data-close="reset-dialog" class="secondary">Продолжить игру</button><button id="confirm-reset" class="primary">Начать заново</button></div></dialog>
+<dialog id="complete-dialog" class="card"><span class="eyebrow">ДЕЛО РАСКРЫТО</span><div class="intro-bat">✦</div><h2>Счастливого Хэллоуина!</h2><p>Ты вернул кристалл и нашёл безопасный свет для мышат. Теперь праздник состоится!</p><p class="fine">Можно продолжить гулять по отелю и осматривать находки.</p><button data-close="complete-dialog" class="primary">Ещё погулять по отелю</button></dialog>
+<dialog id="fullscreen-help" class="card"><h2>Полный экран</h2><p>Этот браузер не разрешил полноэкранный режим. Попробуй открыть игру в Safari на iPad. Ещё можно добавить её на экран «Домой» через меню «Поделиться».</p><button class="primary" data-close="fullscreen-help">Понятно</button></dialog>
+<script type="module" src="game.js?v=19"></script>
+</body></html>
